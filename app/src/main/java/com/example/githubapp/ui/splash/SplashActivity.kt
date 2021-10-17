@@ -1,5 +1,6 @@
 package com.example.githubapp.ui.splash
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import com.example.githubapp.data.pref.SharedPref
 import com.example.githubapp.ui.login.LoginActivity
 import com.example.githubapp.ui.repo.RepositoryActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private var timer: CountDownTimer? = null

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.githubapp.data.model.User
 import com.example.githubapp.data.pref.SharedPref
 import com.example.githubapp.databinding.ActivityProfileBinding
@@ -36,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun logout() {
         sharedPref.accessToken = ""
+        Toast.makeText(this, "Logout success!", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

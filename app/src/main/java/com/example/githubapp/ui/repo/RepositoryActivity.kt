@@ -9,6 +9,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.example.githubapp.R
 import com.example.githubapp.databinding.ActivityRepositoryBinding
 import com.example.githubapp.data.model.AccessToken
@@ -50,6 +52,8 @@ class RepositoryActivity : AppCompatActivity() {
 
         viewModel.repositories.observe(this, {
             adapter.submitList(it)
+            binding.rvRepository.isVisible = true
+            binding.pbRepo.isGone = true
         })
 
         viewModel.userData.observe(this, {

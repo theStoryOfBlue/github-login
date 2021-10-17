@@ -8,8 +8,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.example.githubapp.data.pref.SharedPref
 import com.example.githubapp.databinding.ActivityLoginBinding
+import com.example.githubapp.databinding.CustomDialogLoadingBinding
 import com.example.githubapp.ui.repo.RepositoryActivity
 import com.example.githubapp.utils.Constants.TAG
 import com.example.githubapp.utils.Constants.clientID
@@ -45,25 +47,30 @@ class LoginActivity : AppCompatActivity() {
         if (uri != null){
             val code = uri.getQueryParameter("code")
             if(code != null){
-                setLoadingVisibility(true)
+                showDialog()
                 viewModel.getAccessToken(code)
                 Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show()
             } else if((uri.getQueryParameter("error")) != null){
-                setLoadingVisibility(false)
                 Log.d(TAG, "error: ${uri.getQueryParameter("error")}")
                 Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun setLoadingVisibility(isVisible: Boolean){
-        binding.pbLogin.visibility = if (isVisible) View.VISIBLE else View.GONE
-    }
-
     private fun processLogin() {
+        showDialog()
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(
             "$oauthLoginURL?client_id=$clientID&scope=repo"))
 
         startActivity(intent)
+    }
+
+    private fun showDialog(){
+        val dialogBinding = CustomDialogLoadingBinding.inflate(layoutInflater)
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder
+            .setView(dialogBinding.root)
+            .create()
+            .show()
     }
 }
