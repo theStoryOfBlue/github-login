@@ -9,15 +9,14 @@ class SharedPref(context: Context) {
     companion object{
         private const val PREF_NAME = "GithubApp"
         private const val PREF_MODE = Context.MODE_PRIVATE
-        private val PREF_IS_USER_LOGGED_IN = Pair("IS_USER_LOGGED_IN", false)
+        private val PREF_ACCESS_TOKEN = Pair("ACCESS_TOKEN", "")
     }
 
-    var isUserLoggedIn: Boolean
-        get() = preference.getBoolean(PREF_IS_USER_LOGGED_IN.first, PREF_IS_USER_LOGGED_IN.second)
-        set(value) = preference.edit {
-            it.putBoolean(PREF_IS_USER_LOGGED_IN.first, value)
+    var accessToken: String?
+        get() = preference.getString(PREF_ACCESS_TOKEN.first, PREF_ACCESS_TOKEN.second)
+        set(value) = preference.edit{
+            it.putString(PREF_ACCESS_TOKEN.first, value)
         }
-
 }
 
 private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit){

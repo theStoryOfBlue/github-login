@@ -5,7 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.githubapp.data.model.User
+import com.example.githubapp.data.pref.SharedPref
 import com.example.githubapp.databinding.ActivityProfileBinding
+import com.example.githubapp.ui.login.LoginActivity
 import com.example.githubapp.utils.Constants.EXTRA_USER_DATA
 
 class ProfileActivity : AppCompatActivity() {
@@ -19,18 +21,25 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityProfileBinding
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnLogout.setOnClickListener { logout() }
+
+        sharedPref = SharedPref(this)
 
         setupProfileData()
-        binding.btnLogout.setOnClickListener { logout() }
     }
 
     private fun logout() {
-
+        sharedPref.accessToken = ""
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun setupProfileData() {

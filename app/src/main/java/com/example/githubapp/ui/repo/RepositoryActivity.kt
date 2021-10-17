@@ -23,7 +23,7 @@ class RepositoryActivity : AppCompatActivity() {
 
     companion object{
         @JvmStatic
-        fun startActivity(context: Context, accessToken: AccessToken){
+        fun startActivity(context: Context, accessToken: String){
             val intent = Intent(context, RepositoryActivity::class.java)
             intent.putExtra(EXTRA_ACCESS_TOKEN, accessToken)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -39,13 +39,21 @@ class RepositoryActivity : AppCompatActivity() {
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val accessToken = intent?.getParcelableExtra<AccessToken>(EXTRA_ACCESS_TOKEN)
-        binding.tvAccessToken.text = accessToken?.accessToken
-        accessToken?.let { viewModel.getUserData("${it.tokenType} ${it.accessToken}") }
-        Log.d(TAG, "repo activity: token ${accessToken?.accessToken}")
-        
+        val adapter = RepositoryAdapter()
+        binding.rvRepository.adapter = adapter
+
+        val accessToken = intent?.getStringExtra(EXTRA_ACCESS_TOKEN)
+        accessToken?.let {
+            viewModel.getUserData(it)
+            viewModel.getRepositories(it)
+        }
+
+        viewModel.repositories.observe(this, {
+            adapter.submitList(it)
+        })
+
         viewModel.userData.observe(this, {
-            Toast.makeText(this, "wellcome ${it.name}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Welcome ${it.name}", Toast.LENGTH_SHORT).show()
         })
     }
 

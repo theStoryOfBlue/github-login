@@ -29,7 +29,6 @@ class LoginViewModel @Inject constructor(
             try {
                 _accessToken.value = githubApi.getAccessToken(clientID, clientSecret, code)
                 Log.d(TAG, "AccessToken: ${_accessToken.value?.accessToken}")
-                Log.d(TAG, "Token type: ${_accessToken.value?.tokenType}")
             } catch (e: Exception) {
                 Log.d(TAG, "getAccessToken: error $e")
             }
