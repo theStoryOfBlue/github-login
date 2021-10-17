@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.githubapp.databinding.ActivityLoginBinding
 import com.example.githubapp.ui.repo.RepositoryActivity
+import com.example.githubapp.utils.Constants.TAG
 import com.example.githubapp.utils.Constants.clientID
 import com.example.githubapp.utils.Constants.oauthLoginURL
 import com.example.githubapp.utils.Constants.redirectUri

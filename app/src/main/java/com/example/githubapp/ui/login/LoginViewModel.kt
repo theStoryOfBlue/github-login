@@ -7,14 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.githubapp.data.model.AccessToken
 import com.example.githubapp.network.GithubApi
+import com.example.githubapp.utils.Constants.TAG
 import com.example.githubapp.utils.Constants.clientID
 import com.example.githubapp.utils.Constants.clientSecret
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
-
-val TAG = "access_token"
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
