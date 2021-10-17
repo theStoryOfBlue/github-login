@@ -11,4 +11,5 @@ object Constants {
     const val clientSecret = "5447af3efb5afba3751aa6a0025e97affcf1a538"
 
     const val EXTRA_ACCESS_TOKEN = "AccessToken"
+    const val EXTRA_USER_DATA = "AccessToken"
 }

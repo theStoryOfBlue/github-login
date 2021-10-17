@@ -17,6 +17,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.repo.RepositoryActivity"
+            android:label="@string/repository"
             android:exported="true" />
         <activity
             android:name=".ui.login.LoginActivity"

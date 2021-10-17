@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.githubapp.R
 import com.example.githubapp.databinding.ActivityRepositoryBinding
@@ -40,7 +41,12 @@ class RepositoryActivity : AppCompatActivity() {
 
         val accessToken = intent?.getParcelableExtra<AccessToken>(EXTRA_ACCESS_TOKEN)
         binding.tvAccessToken.text = accessToken?.accessToken
+        accessToken?.let { viewModel.getUserData("${it.tokenType} ${it.accessToken}") }
         Log.d(TAG, "repo activity: token ${accessToken?.accessToken}")
+        
+        viewModel.userData.observe(this, {
+            Toast.makeText(this, "wellcome ${it.name}", Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
