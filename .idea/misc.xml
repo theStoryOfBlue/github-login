@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PC01/Desktop/Github-Oauth-Login-Kotlin/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/PC01/Desktop/Github-Oauth-Login-Kotlin/app/src/main/res/layout/custom_dialog_loading.xml" value="0.2359375" />
         <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/challenge/GithubApp/app/src/main/res/drawable/loading_img.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/challenge/GithubApp/app/src/main/res/layout/activity_login.xml" value="0.225" />
         <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/challenge/GithubApp/app/src/main/res/layout/activity_main.xml" value="0.17222222222222222" />

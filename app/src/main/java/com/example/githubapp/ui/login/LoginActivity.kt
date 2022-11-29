@@ -42,26 +42,36 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+
         super.onResume()
+
         val uri: Uri? = intent?.data
+
+        Log.e(TAG, "onResume: start", )
+
+
+
         if (uri != null){
             val code = uri.getQueryParameter("code")
-            if(code != null){
-                showDialog()
-                viewModel.getAccessToken(code)
-                Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show()
-            } else if((uri.getQueryParameter("error")) != null){
-                Log.d(TAG, "error: ${uri.getQueryParameter("error")}")
-                Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show()
-            }
+            binding.textView.text = code
+            Log.e(TAG, "onResume code : $code", )
+//            if(code != null){
+//                showDialog()
+//                viewModel.getAccessToken(code)
+//                Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show()
+//            } else if((uri.getQueryParameter("error")) != null){
+//                Log.d(TAG, "error: ${uri.getQueryParameter("error")}")
+//                Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 
     private fun processLogin() {
-        showDialog()
+        Log.e(TAG, "processLogin startr", )
+        //showDialog()
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(
-            "$oauthLoginURL?client_id=$clientID&scope=repo"))
-
+            "$oauthLoginURL?client_id=$clientID"))
+        Log.e(TAG, "processLogin: ${intent.data}")
         startActivity(intent)
     }
 

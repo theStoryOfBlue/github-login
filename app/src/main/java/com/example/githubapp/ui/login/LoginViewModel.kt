@@ -25,12 +25,13 @@ class LoginViewModel @Inject constructor(
         get() = _accessToken
 
     fun getAccessToken(code: String) {
+        Log.e(TAG, "getAccessToken: start", )
         viewModelScope.launch {
             try {
                 _accessToken.value = githubApi.getAccessToken(clientID, clientSecret, code)
-                Log.d(TAG, "AccessToken: ${_accessToken.value?.accessToken}")
+                Log.e(TAG, "AccessToken: ${_accessToken.value?.accessToken}")
             } catch (e: Exception) {
-                Log.d(TAG, "getAccessToken: error $e")
+                Log.e(TAG, "getAccessToken: error $e")
             }
         }
     }
